@@ -1,0 +1,2 @@
+numpy>=1.26,<3
+jevbench @ git+https://github.com/fstandhartinger/jevbench.git@7ce310c7262ed49cc85853339a8a42459298e3f3

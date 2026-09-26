@@ -1,0 +1,69 @@
+{
+  "purpose": "Previously fitted evaluation temperatures; do not fit on bundled test sets.",
+  "models": {
+    "intern-decision-0.8b": {
+      "temperature": 2.747760550702957,
+      "method": "temperature-scaling",
+      "fit_split": "calibration",
+      "inference_backend": "xtuner",
+      "checkpoint_hashes": {
+        "model-projector-0001-save_rank0.safetensors": "7f81b4ab1b4434c4d0322c849525337c1746f0ca4b9beac107a94e23b2952fee",
+        "config.json": "b90b86f35c8e6925ef74ee04d0e758f0a845c83a42089ad82bbaa948de9b4204",
+        "vocab.json": "4ab0d5c096294054b66444a116a20baf6e29998fc1fae410ffe4b6fadbc56b5c",
+        "tokenizer_config.json": "f26d55ed6da1fc0de69fbaefae7b855f762e36d0052c05f4fdec312f72a22ae1",
+        "chat_template.jinja": "273d8e0e683b885071fb17e08d71e5f2a5ddfb5309756181681de4f5a1822d80",
+        "model.safetensors.index.json": "f71a08fca77f74382c1b358bbf958bdbc9f82008c1bd7e9a842fc412eeec3ba9",
+        "special_tokens_map.json": "02c0c88f275a15197a3b600ccd6ae7976e9b8b67e8eb5d7500d256d91cb6791b",
+        "added_tokens.json": "f1073c68b68e68ea82a576cf0865df14fc71408681b35724a4d17a214db5a97d",
+        "model-vision-0001-save_rank0.safetensors": "bf8e03e3be40018e51037b46bb8ebe0471e2aceb394ad988632cce2c87d2e177",
+        "tokenizer.json": "94a639c4b33b192cc5a22cd3d7f0aaf6d97efa9577957a0382b55292ca4f0f00",
+        "model-language-0001-save_rank0.safetensors": "4acc4bd67febb2466ef7c282099fd05ee0ba47b853b6c49b9e763fb642957820",
+        "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+        "merges.txt": "3bd640ba6d8da8f5844f3548b7e2184fc664dd670e1447e425a48dbaaad1ef43"
+      }
+    },
+    "intern-decision-2b": {
+      "temperature": 2.100509348277736,
+      "method": "temperature-scaling",
+      "fit_split": "calibration",
+      "inference_backend": "xtuner",
+      "checkpoint_hashes": {
+        "model-projector-0001-save_rank0.safetensors": "26e6a8056dce97e33101fffab7f41a829546771326bbc03a42696c8bbed09ac3",
+        "config.json": "ed1c1723241f23f7f4e23430759cbd7dcfb4103cbdfe052bfe7626b57c2615b4",
+        "vocab.json": "4ab0d5c096294054b66444a116a20baf6e29998fc1fae410ffe4b6fadbc56b5c",
+        "tokenizer_config.json": "f26d55ed6da1fc0de69fbaefae7b855f762e36d0052c05f4fdec312f72a22ae1",
+        "chat_template.jinja": "273d8e0e683b885071fb17e08d71e5f2a5ddfb5309756181681de4f5a1822d80",
+        "model.safetensors.index.json": "0181b2e695c344cecef9e601d0fffaacc3f27688d0da6cc9426b2a7d168e9d4a",
+        "special_tokens_map.json": "02c0c88f275a15197a3b600ccd6ae7976e9b8b67e8eb5d7500d256d91cb6791b",
+        "added_tokens.json": "f1073c68b68e68ea82a576cf0865df14fc71408681b35724a4d17a214db5a97d",
+        "model-vision-0001-save_rank0.safetensors": "ca0e18ef7b32cab7d52f27f4b52a9907bce9eb8e7b0d46c26bbddecb1d10b812",
+        "tokenizer.json": "94a639c4b33b192cc5a22cd3d7f0aaf6d97efa9577957a0382b55292ca4f0f00",
+        "model-language-0001-save_rank0.safetensors": "81ee251c9280fd8f0eb6472fd79b638bffbf3b46a8729fad353e053c8891bdf5",
+        "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+        "merges.txt": "3bd640ba6d8da8f5844f3548b7e2184fc664dd670e1447e425a48dbaaad1ef43"
+      }
+    },
+    "intern-decision-4b": {
+      "temperature": 1.9924182353655278,
+      "method": "temperature-scaling",
+      "fit_split": "calibration",
+      "inference_backend": "xtuner",
+      "checkpoint_hashes": {
+        "model-language-0001-save_rank0.safetensors": "ea71a535feda64b433d048d8d773637d9b1e5f317b832af531c70221159770ac",
+        "model-language-0002-save_rank0.safetensors": "c0a64383b5e5ca18c1086135dba5ee123a6c203ad86ffa4a08bdb9107ef61d6e",
+        "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+        "vocab.json": "4ab0d5c096294054b66444a116a20baf6e29998fc1fae410ffe4b6fadbc56b5c",
+        "tokenizer_config.json": "f26d55ed6da1fc0de69fbaefae7b855f762e36d0052c05f4fdec312f72a22ae1",
+        "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+        "model.safetensors.index.json": "871fdd1393bc783da69f760386b0747c9d73c57c5bf5e9134b461dfdb92922fc",
+        "tokenizer.json": "94a639c4b33b192cc5a22cd3d7f0aaf6d97efa9577957a0382b55292ca4f0f00",
+        "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+        "merges.txt": "3bd640ba6d8da8f5844f3548b7e2184fc664dd670e1447e425a48dbaaad1ef43",
+        "model-vision-0001-save_rank0.safetensors": "cf1793360eb8e8f1de0678df1a4c8b0b9042ae79e618aff1fa24c30f3b41b233",
+        "model-projector-0001-save_rank0.safetensors": "a918679313b12c1d31659cd3b492e8be53c616217c2f7ec658ed7f0fdfa22ee0",
+        "special_tokens_map.json": "02c0c88f275a15197a3b600ccd6ae7976e9b8b67e8eb5d7500d256d91cb6791b",
+        "added_tokens.json": "f1073c68b68e68ea82a576cf0865df14fc71408681b35724a4d17a214db5a97d"
+      }
+    }
+  }
+}

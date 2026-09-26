@@ -1,0 +1,96 @@
+{
+  "revision": "accuracy-v1",
+  "purpose": "evaluation_only",
+  "training_ready": false,
+  "datasets": {
+    "jevbench-easy": {
+      "path": "jevbench/easy.jsonl",
+      "rows": 48,
+      "decisions": 48,
+      "upstream": [
+        "https://github.com/fstandhartinger/jevbench"
+      ],
+      "upstream_license_metadata": [
+        "MIT"
+      ]
+    },
+    "jevbench-original": {
+      "path": "jevbench/original.jsonl",
+      "rows": 72,
+      "decisions": 72,
+      "upstream": [
+        "https://github.com/fstandhartinger/jevbench"
+      ],
+      "upstream_license_metadata": [
+        "MIT"
+      ]
+    },
+    "jevbench-hard": {
+      "path": "jevbench/hard.jsonl",
+      "rows": 111,
+      "decisions": 111,
+      "upstream": [
+        "https://github.com/fstandhartinger/jevbench"
+      ],
+      "upstream_license_metadata": [
+        "MIT"
+      ]
+    },
+    "agnews-test": {
+      "path": "agnews/test.jsonl",
+      "rows": 7600,
+      "decisions": 7600,
+      "upstream": [
+        "fancyzhx/ag_news"
+      ],
+      "upstream_license_metadata": [
+        "unknown"
+      ]
+    },
+    "toolace-test": {
+      "path": "toolace/test.jsonl",
+      "rows": 310,
+      "decisions": 310,
+      "upstream": [
+        "Team-ACE/ToolACE"
+      ],
+      "upstream_license_metadata": [
+        "apache-2.0"
+      ]
+    },
+    "typed_decisions-test": {
+      "path": "typed_decisions/test.jsonl",
+      "rows": 400,
+      "decisions": 2000,
+      "upstream": [
+        "LocalLLaMA/typed-decisions"
+      ],
+      "upstream_license_metadata": [
+        "Apache-2.0"
+      ]
+    },
+    "wildjailbreak-test": {
+      "path": "wildjailbreak/test.jsonl",
+      "rows": 2210,
+      "decisions": 2210,
+      "upstream": [
+        "allenai/wildjailbreak"
+      ],
+      "upstream_license_metadata": [
+        "Apache-2.0"
+      ]
+    }
+  },
+  "files": {
+    "jevbench/easy.jsonl": "3b8afa6e55e4decf1c8e116910443215690951dd51e15b7a6e4b813bc83c1eae",
+    "jevbench/original.jsonl": "157c355d5d07fba47d516acdb048607a5ee4ef14347bbf87cf67dac73d1a193e",
+    "jevbench/hard.jsonl": "5ed49f0a43a468993747a22b007fe65fc1187ed433d3c3a95ff9b69a293a8e34",
+    "agnews/test.jsonl": "4ff1cad1531f29cbfce572e3ddb73666626fd19663691ea3cb4093f46e1edd08",
+    "toolace/test.jsonl": "259a600d06c616c6b8bcc2138ec1e96be9eda0eb1817e871e57509c1be94ab2b",
+    "typed_decisions/test.jsonl": "fa43c0389d9dbdf18cf1afe75c73f320d7620f3bb2a8be19e7cca7df5e78588f",
+    "wildjailbreak/test.jsonl": "2b14e5449850463b530e92493244c4f4a888d91ff4b458130e17f661d2ce8938"
+  },
+  "note": "Model evidence, field/option ordering, hard labels and scoring distributions match the evaluated records. Internal provenance metadata is excluded.",
+  "rows": 10751,
+  "decisions": 12351
+}

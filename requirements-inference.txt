@@ -1,0 +1,11 @@
+# Native HF backend; use a separate environment from XTuner.
+torch==2.9.1
+transformers==5.14.1
+safetensors>=0.4,<1
+Pillow>=10,<13
+numpy>=1.26,<3
+fastapi>=0.115,<1
+uvicorn>=0.30,<1
+httpx>=0.27,<1
+pydantic>=2.8,<3
+python-dotenv>=1,<2

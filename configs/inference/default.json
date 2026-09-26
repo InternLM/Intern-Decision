@@ -1,0 +1,11 @@
+{
+  "backend": "hf",
+  "checkpoint": "checkpoints/intern-decision",
+  "max_length": 8192,
+  "device": "cuda",
+  "dtype": "bfloat16",
+  "attn_implementation": "sdpa",
+  "thinking": {
+    "enabled": false
+  }
+}

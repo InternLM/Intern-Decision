@@ -1,0 +1,40 @@
+{
+  "revision": "known-distribution-pilot-v1",
+  "purpose": "evaluation_only",
+  "training_ready": false,
+  "rows": 96,
+  "independent_parameter_groups": 48,
+  "families": 24,
+  "categories": {
+    "direct": "Direct randomness and support",
+    "composition": "Composed events and mixtures",
+    "history": "History, conditioning, and hidden state",
+    "daily_evidence": "Daily evidence and observation bias",
+    "disclosure": "Selective disclosure and probability puzzles",
+    "sequential": "Sequential and combinatorial processes"
+  },
+  "counts_by_category": {
+    "direct": 16,
+    "composition": 16,
+    "history": 16,
+    "daily_evidence": 16,
+    "disclosure": 16,
+    "sequential": 16
+  },
+  "counts_by_difficulty": {
+    "direct": 20,
+    "derived": 36,
+    "compositional": 40
+  },
+  "oracle": "Exact Fraction arithmetic, enumeration, analytic formulas and dynamic programming; no Monte Carlo",
+  "files": {
+    "inputs.jsonl": "54a2c97dffd972aa0c2ca0ba9386d79a63e369a1bd4f6913ed533ae32f0aff91",
+    "references.jsonl": "2aed5e4ac334a4caa234bf784796008a6d2be285619564bbc01df3dc7d765eb6"
+  },
+  "generator_sha256": "f2006424998d76a0797922a641aae3a22d373f8f5b0cd100d86e3211f0e39864",
+  "seed": null,
+  "confidence_policy": "valid API confidence when present; otherwise max(P)",
+  "ece": "10-bin population ECE: replace sampled correctness by gold probability of the model argmax",
+  "fit_split": null,
+  "note": "Pilot test set; no fitting on these references. Variants share a group. All questions use choice."
+}
