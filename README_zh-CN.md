@@ -30,9 +30,9 @@ Intern-Decision 将状态、可选图片和多个结构化问题转换为决策�
 <table align="center">
   <tr>
     <td align="center" width="50%">
-      <p align="center"><strong>🌐 浏览器操作</strong></p>
-      <a href="assets/demos/Browser-Use.mp4">
-        <img src="assets/demos/Browser-Use.gif" width="420" alt="🌐 浏览器操作" />
+      <p align="center"><strong>🍄 马里奥</strong></p>
+      <a href="assets/demos/Mario.mp4">
+        <img src="assets/demos/Mario.gif" width="420" alt="🍄 马里奥" />
       </a>
     </td>
     <td align="center" width="50%">
@@ -58,9 +58,9 @@ Intern-Decision 将状态、可选图片和多个结构化问题转换为决策�
   </tr>
   <tr>
     <td align="center" colspan="2">
-      <p align="center"><strong>🍄 马里奥</strong></p>
-      <a href="assets/demos/Mario.mp4">
-        <img src="assets/demos/Mario.gif" width="420" alt="🍄 马里奥" />
+      <p align="center"><strong>🌐 浏览器操作</strong></p>
+      <a href="assets/demos/Browser-Use.mp4">
+        <img src="assets/demos/Browser-Use.gif" width="420" alt="🌐 浏览器操作" />
       </a>
     </td>
   </tr>

@@ -33,9 +33,9 @@ support your own records. Demo examples are synthetic interface illustrations.
 <table align="center">
   <tr>
     <td align="center" width="50%">
-      <p align="center"><strong>🌐 Browser Use</strong></p>
-      <a href="assets/demos/Browser-Use.mp4">
-        <img src="assets/demos/Browser-Use.gif" width="420" alt="🌐 Browser Use" />
+      <p align="center"><strong>🍄 Mario</strong></p>
+      <a href="assets/demos/Mario.mp4">
+        <img src="assets/demos/Mario.gif" width="420" alt="🍄 Mario" />
       </a>
     </td>
     <td align="center" width="50%">
@@ -61,9 +61,9 @@ support your own records. Demo examples are synthetic interface illustrations.
   </tr>
   <tr>
     <td align="center" colspan="2">
-      <p align="center"><strong>🍄 Mario</strong></p>
-      <a href="assets/demos/Mario.mp4">
-        <img src="assets/demos/Mario.gif" width="420" alt="🍄 Mario" />
+      <p align="center"><strong>🌐 Browser Use</strong></p>
+      <a href="assets/demos/Browser-Use.mp4">
+        <img src="assets/demos/Browser-Use.gif" width="420" alt="🌐 Browser Use" />
       </a>
     </td>
   </tr>
