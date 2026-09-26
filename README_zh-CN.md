@@ -1,9 +1,16 @@
-# Intern-Decision
+<h1 align="center">Intern-Decision</h1>
 
-- **在线演示（Demo）：** [Hugging Face Space](https://huggingface.co/spaces/internlm/intern-decision)
-- **模型权重（Model Weights）：** [Hugging Face Collection](https://huggingface.co/collections/internlm/intern-decision)
+<p align="center">
+  <a href="https://huggingface.co/spaces/internlm/intern-decision"><strong>🎮 在线演示</strong></a>
+  &nbsp; · &nbsp;
+  <a href="https://huggingface.co/collections/internlm/intern-decision"><strong>🤗 模型权重</strong></a>
+</p>
 
-[English](README.md) · [数据格式](docs/DATA.md) · [评测复现指南](docs/EVALUATION.md)
+<p align="center">
+  <a href="README.md">English</a> ·
+  <a href="docs/DATA.md">数据格式</a> ·
+  <a href="docs/EVALUATION.md">评测复现指南</a>
+</p>
 
 Intern-Decision 将状态、可选图片和多个结构化问题转换为决策与概率。
 模型基于 Qwen3.5 微调语言主干，同时冻结视觉编码器和投影层。
@@ -15,6 +22,49 @@ Intern-Decision 将状态、可选图片和多个结构化问题转换为决策�
 训练数据、内部校准/验证记录、图片、数据准备流程和模型权重不包含在本目录中。
 运行时 schema、tokenization 和 collator 支持用户自行提供的记录。
 演示中的例子是独立编写的合成接口示例。
+
+<h2 align="center">🎬 演示视频</h2>
+
+<p align="center">点击预览，观看完整视频。</p>
+
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <p align="center"><strong>🌐 浏览器操作</strong></p>
+      <a href="assets/demos/Browser-Use.mp4">
+        <img src="assets/demos/Browser-Use.gif" width="420" alt="🌐 浏览器操作" />
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <p align="center"><strong>🖱️ 鼠标移动</strong></p>
+      <a href="assets/demos/Mouse-Moving.mp4">
+        <img src="assets/demos/Mouse-Moving.gif" width="420" alt="🖱️ 鼠标移动" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <p align="center"><strong>🛡️ Doom · 防守</strong></p>
+      <a href="assets/demos/Doom-Defend.mp4">
+        <img src="assets/demos/Doom-Defend.gif" width="420" alt="🛡️ Doom · 防守" />
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <p align="center"><strong>💚 Doom · 收集生命值</strong></p>
+      <a href="assets/demos/Doom-Health-Gathering.mp4">
+        <img src="assets/demos/Doom-Health-Gathering.gif" width="420" alt="💚 Doom · 收集生命值" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <p align="center"><strong>🍄 马里奥</strong></p>
+      <a href="assets/demos/Mario.mp4">
+        <img src="assets/demos/Mario.gif" width="420" alt="🍄 马里奥" />
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## 方法
 

@@ -1,9 +1,16 @@
-# Intern-Decision
+<h1 align="center">Intern-Decision</h1>
 
-- **Demo:** [Hugging Face Space](https://huggingface.co/spaces/internlm/intern-decision)
-- **Model Weights:** [Hugging Face Collection](https://huggingface.co/collections/internlm/intern-decision)
+<p align="center">
+  <a href="https://huggingface.co/spaces/internlm/intern-decision"><strong>🎮 Demo</strong></a>
+  &nbsp; · &nbsp;
+  <a href="https://huggingface.co/collections/internlm/intern-decision"><strong>🤗 Model Weights</strong></a>
+</p>
 
-[简体中文](README_zh-CN.md) · [Data interface / 数据格式](docs/DATA.md) · [Reproduce evaluations](docs/EVALUATION.md)
+<p align="center">
+  <a href="README_zh-CN.md">简体中文</a> ·
+  <a href="docs/DATA.md">Data interface</a> ·
+  <a href="docs/EVALUATION.md">Reproduce evaluations</a>
+</p>
 
 Intern-Decision turns a state, optional images, and multiple typed questions into
 decisions with probabilities. It fine-tunes the language backbone of Qwen3.5
@@ -18,6 +25,49 @@ seven accuracy test suites and checkpoint-specific temperature presets. Training
 data, private calibration/validation records, images, preparation pipelines, and
 model weights are not included. The runtime schema, tokenization, and collation
 support your own records. Demo examples are synthetic interface illustrations.
+
+<h2 align="center">🎬 Demonstrations</h2>
+
+<p align="center">Click any preview to watch the full video.</p>
+
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <p align="center"><strong>🌐 Browser Use</strong></p>
+      <a href="assets/demos/Browser-Use.mp4">
+        <img src="assets/demos/Browser-Use.gif" width="420" alt="🌐 Browser Use" />
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <p align="center"><strong>🖱️ Mouse Moving</strong></p>
+      <a href="assets/demos/Mouse-Moving.mp4">
+        <img src="assets/demos/Mouse-Moving.gif" width="420" alt="🖱️ Mouse Moving" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <p align="center"><strong>🛡️ Doom · Defend</strong></p>
+      <a href="assets/demos/Doom-Defend.mp4">
+        <img src="assets/demos/Doom-Defend.gif" width="420" alt="🛡️ Doom · Defend" />
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <p align="center"><strong>💚 Doom · Health Gathering</strong></p>
+      <a href="assets/demos/Doom-Health-Gathering.mp4">
+        <img src="assets/demos/Doom-Health-Gathering.gif" width="420" alt="💚 Doom · Health Gathering" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">
+      <p align="center"><strong>🍄 Mario</strong></p>
+      <a href="assets/demos/Mario.mp4">
+        <img src="assets/demos/Mario.gif" width="420" alt="🍄 Mario" />
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## Method
 

@@ -5,8 +5,8 @@
     "configs/training/qwen35.py": "271dc4b11beab4acdb571d70fe866d8c5ab4eac86e31753fb18b395931774ecf",
     "docs/DATA.md": "b7871382a40d16c5fd27f4cec1cda9364bcbdf5acad4e3f207d46a3e6ee8a04d",
     "pyproject.toml": "d63294102df9891ad76808fd77508e5112a27facfd7825515748cfc56628417f",
-    "README.md": "32d9c95c52def140688e2763f80e9b76c2174e3baa6a0b02638f43425b38ca87",
-    "README_zh-CN.md": "a18faefa8fd72b96cf24b5bcbf4c51e8347aa7f0af0e21df90e93207d9e6426a",
+    "README.md": "fa345f52e2862e915b7594b2549e09770ce9ed6e9118d7b84786892b3d8bb214",
+    "README_zh-CN.md": "481f3fecea808593c8d570f7520a0b78e432b42f09354b1067ab9a01214bb01e",
     "requirements-eval.txt": "f99f9ef677d66b25514c058e368eaa6196e6abb3594fbcc36c555dfd6b5779d5",
     "requirements-inference.txt": "b6363ecc257d61434db66269b998fb471159ab5275d24f8281e4556522e74cb4",
     "requirements-xtuner.txt": "6196ddf3b3ccfb28da595497543a3e2740e44e9d324733b6883bb83ec8260cda",
@@ -76,6 +76,16 @@
     "benchmarks/accuracy-v1/jevbench/original.jsonl": "157c355d5d07fba47d516acdb048607a5ee4ef14347bbf87cf67dac73d1a193e",
     "benchmarks/accuracy-v1/toolace/test.jsonl": "259a600d06c616c6b8bcc2138ec1e96be9eda0eb1817e871e57509c1be94ab2b",
     "benchmarks/accuracy-v1/typed_decisions/test.jsonl": "fa43c0389d9dbdf18cf1afe75c73f320d7620f3bb2a8be19e7cca7df5e78588f",
-    "benchmarks/accuracy-v1/wildjailbreak/test.jsonl": "2b14e5449850463b530e92493244c4f4a888d91ff4b458130e17f661d2ce8938"
+    "benchmarks/accuracy-v1/wildjailbreak/test.jsonl": "2b14e5449850463b530e92493244c4f4a888d91ff4b458130e17f661d2ce8938",
+    "assets/demos/Browser-Use.gif": "17305c56d2d95504978f6479f10b2bc8daa342daab54bfecda629fed8793d28f",
+    "assets/demos/Browser-Use.mp4": "e004942a74a04cef99760a510924385b3aee19751d952793f2f67cdbca4cd7cb",
+    "assets/demos/Doom-Defend.gif": "7251e69dc7d70e6853b9b7fc88fc5a149b121c7eb4054ae445e95048e3989ce6",
+    "assets/demos/Doom-Defend.mp4": "04b72510db65b36da384e389fb700d28f1381a214dd751862a74bf7cf0a78770",
+    "assets/demos/Doom-Health-Gathering.gif": "d44f761a1f246d96a9a0c7438b2dbcc8124f2cfb53d792099b0159d66f819219",
+    "assets/demos/Doom-Health-Gathering.mp4": "97e878a25ad16700117a90c2454f79759dcc23f0f3c2194a52ac2975298e90aa",
+    "assets/demos/Mario.gif": "34e766233785888f8a1a8b9707dd76226be901c79718d86b5b57e252e93d15c7",
+    "assets/demos/Mario.mp4": "05bd49d3f9e442ef40091c27e4d99e8d63e5ea4698018bababdbb7f2500ce24d",
+    "assets/demos/Mouse-Moving.gif": "fa4457b55bb10d1daf8a7b93c746170ca946aa5237eee1a109f0a09b998ea643",
+    "assets/demos/Mouse-Moving.mp4": "85fe20634ddce8a6ecb4a35ece29227017cdf68716acba5b1e1b58106a164f63"
   }
 }
