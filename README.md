@@ -3,6 +3,8 @@
 <p align="center">
   <a href="https://huggingface.co/spaces/internlm/intern-decision"><strong>🎮 Demo</strong></a>
   &nbsp; · &nbsp;
+  <a href="https://arxiv.org/abs/2610.22131"><strong>📄 Technical Report</strong></a>
+  &nbsp; · &nbsp;
   <a href="https://huggingface.co/collections/internlm/intern-decision"><strong>🤗 Model Weights</strong></a>
 </p>
 
@@ -68,6 +70,15 @@ support your own records. Demo examples are synthetic interface illustrations.
     </td>
   </tr>
 </table>
+
+## Community Projects
+
+Applications and demos built by the Intern-Decision community:
+
+- [Intern-Decision-4B Demo](https://huggingface.co/spaces/hugging-apps/internlm-intern-decision-4b) — A Gradio demo by Hugging Apps.
+- [Abstract Master](https://abstract-master.vercel.app/) — A community application built with Intern-Decision.
+
+Have a project to share? Submit a pull request to add it here.
 
 ## Method
 

@@ -3,6 +3,8 @@
 <p align="center">
   <a href="https://huggingface.co/spaces/internlm/intern-decision"><strong>🎮 在线演示</strong></a>
   &nbsp; · &nbsp;
+  <a href="https://arxiv.org/abs/2610.22131"><strong>📄 技术报告</strong></a>
+  &nbsp; · &nbsp;
   <a href="https://huggingface.co/collections/internlm/intern-decision"><strong>🤗 模型权重</strong></a>
 </p>
 
@@ -65,6 +67,15 @@ Intern-Decision 将状态、可选图片和多个结构化问题转换为决策�
     </td>
   </tr>
 </table>
+
+## 社区项目
+
+社区基于 Intern-Decision 构建的应用与演示：
+
+- [Intern-Decision-4B Demo](https://huggingface.co/spaces/hugging-apps/internlm-intern-decision-4b)：由 Hugging Apps 提供的 Gradio 演示。
+- [Abstract Master](https://abstract-master.vercel.app/)：基于 Intern-Decision 的社区应用。
+
+欢迎通过 Pull Request 分享更多相关项目。
 
 ## 方法
 
