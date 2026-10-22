@@ -391,3 +391,16 @@ docs/DATA.md     用户输入数据的格式约定
 
 第三方依赖遵循各自许可证：权重适用 Qwen 模型条款，XTuner 为 Apache-2.0，
 Jevbench 为 MIT。本目录不再分发模型权重或第三方代码仓库。
+
+## 引用
+
+如果本项目对你的研究或应用有帮助，欢迎引用我们的技术报告：
+
+```bibtex
+@article{zhu2026intern,
+  title={Intern-Decision: Efficient Multimodal Decision Making with Autoregressive Masked Language Modeling},
+  author={Zhu, Tong and Xu, Zhe and He, Zefeng and Chai, Yunkai and Hu, Xuyang and Zheng, Dehong and Luo, Yun and Li, Yafu and Zhang, Qi and Cheng, Yu},
+  journal={arXiv preprint arXiv:2610.22131},
+  year={2026}
+}
+```

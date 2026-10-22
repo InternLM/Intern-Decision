@@ -415,3 +415,16 @@ docs/DATA.md     Expected user-supplied input format
 Third-party dependencies retain their own licenses: Qwen model terms apply to
 weights; XTuner is Apache-2.0; Jevbench is MIT. Neither weights nor third-party
 repositories are redistributed in this folder.
+
+## Citation
+
+If you find Intern-Decision useful, please cite our technical report:
+
+```bibtex
+@article{zhu2026intern,
+  title={Intern-Decision: Efficient Multimodal Decision Making with Autoregressive Masked Language Modeling},
+  author={Zhu, Tong and Xu, Zhe and He, Zefeng and Chai, Yunkai and Hu, Xuyang and Zheng, Dehong and Luo, Yun and Li, Yafu and Zhang, Qi and Cheng, Yu},
+  journal={arXiv preprint arXiv:2610.22131},
+  year={2026}
+}
+```
