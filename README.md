@@ -195,9 +195,16 @@ inference examples, formulas, validation and limitations.
 ## Installation
 
 Use Linux, Python 3.12, and CUDA for the trained backends. Run commands from
-this repository root. Keep HF and XTuner in separate virtual environments:
-their tested Transformers versions differ. Checkpoints are local HF directories
-including weights, processor, tokenizer, chat template, and `<decision>` token.
+this repository root. Keep HF, XTuner, and LMDeploy in separate virtual
+environments; the tested HF and XTuner Transformers versions differ. HF and
+XTuner use local HF checkpoint directories including weights, processor,
+tokenizer, chat template, and `<decision>` token.
+
+LMDeploy accepts either a Hugging Face model ID or a local HF checkpoint
+directory containing the same files. To use local weights, replace
+`internlm/Intern-Decision-4B` in the [LMDeploy serving command](#lmdeploy-serving)
+with `/path/to/Intern-Decision-4B`. Keep `--model-name Intern-Decision-4B`
+so the API request examples use the same model name.
 
 ### Native Hugging Face inference
 
@@ -239,29 +246,111 @@ tools may be needed by optional extensions. The HF environment remains
 independent. Different kernels and BF16 rounding can produce probability
 differences between backends; do not claim bitwise backend equivalence.
 
-## Inference
+### LMDeploy
 
-Create a request JSON using [docs/DATA.md](docs/DATA.md), then:
+Install [LMDeploy](https://github.com/InternLM/lmdeploy) from its `main` branch
+in a separate environment:
 
 ```bash
+python3.12 -m venv .venv-lmdeploy
+source .venv-lmdeploy/bin/activate
+DISABLE_TURBOMIND=1 python -m pip install \
+    "git+https://github.com/InternLM/lmdeploy.git@main"
+```
+
+Intern-Decision serving uses the PyTorch backend. See the
+[LMDeploy installation guide](https://github.com/InternLM/lmdeploy/blob/main/docs/en/get_started/installation.md#install-from-source)
+for system requirements.
+
+## Inference
+
+For HF and XTuner, create a request JSON using [docs/DATA.md](docs/DATA.md).
+Their shared settings are `MODEL_PATH` (only if the matching processor is
+stored separately), `MEDIA_ROOT` (the base directory for CLI image paths),
+and `CALIBRATION_PATH` (a checkpoint-specific calibration JSON file).
+Without a calibration file, temperature is 1.0. Do not reuse a temperature
+from another checkpoint or treat a sampling temperature as calibration.
+
+### Hugging Face (HF)
+
+Activate the HF environment and run inference:
+
+```bash
+source .venv-hf/bin/activate
 export MODEL_CHECKPOINT=/path/to/checkpoint
 python -m src.inference --backend hf --input /path/to/request.json
 ```
 
-For XTuner, activate its environment and explicitly enable its runtime:
+HF supports `device`, `dtype`, and `attn_implementation` settings in
+`configs/inference/default.json`.
+
+### XTuner
+
+Activate the XTuner environment and explicitly enable its runtime.
+This backend uses CUDA/BF16:
 
 ```bash
+source .venv-xtuner/bin/activate
+export MODEL_CHECKPOINT=/path/to/checkpoint
 export PYTHONPATH="$PWD/runtime/xtuner:$PWD:$XTUNER_PATH"
 export XTUNER_HF_IMPL=1 XTUNER_USE_FA3=0
 python -m src.inference --backend xtuner --input /path/to/request.json
 ```
 
-The XTuner backend uses CUDA/BF16. HF additionally supports `device`, `dtype`
-and `attn_implementation` in `configs/inference/default.json`. Set `MODEL_PATH`
-only if the matching processor is stored separately. `MEDIA_ROOT` resolves
-local image paths for CLI use. `CALIBRATION_PATH` enables a checkpoint-specific
-calibration artifact; otherwise temperature is 1.0. Do not reuse a temperature
-from another checkpoint or treat a sampling temperature as calibration.
+### LMDeploy serving
+
+From this repository root in a new terminal, activate the LMDeploy environment
+and start a single-GPU BF16 server for Intern-Decision-4B:
+
+```bash
+source .venv-lmdeploy/bin/activate
+lmdeploy serve api_server \
+    internlm/Intern-Decision-4B \
+    --backend pytorch \
+    --task intern-decision \
+    --model-name Intern-Decision-4B \
+    --dtype bfloat16 \
+    --tp 1 \
+    --server-name 127.0.0.1 \
+    --server-port 23333
+```
+
+Keep `--task intern-decision`: it enables the dedicated decision service.
+Decision requests score the input and return calibrated answers without
+generating tokens.
+
+Request format reference:
+
+```bash
+curl http://127.0.0.1:23333/v1/decisions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": "Intern-Decision-4B",
+        "input": "The customer was charged twice.",
+        "questions": [
+            {
+                "type": "predicate",
+                "name": "duplicate_charge",
+                "instructions": "Was the customer charged more than once?"
+            }
+        ]
+    }'
+```
+
+For Intern-Decision-0.8B or Intern-Decision-2B, replace the checkpoint ID,
+`--model-name`, and request `model` accordingly. LMDeploy resolves calibration
+automatically for the official checkpoints. Use `--decision-temperature` with
+a finite positive value to override it. The `CALIBRATION_PATH` setting above
+applies to native HF/XTuner inference.
+
+For local checkpoints, LMDeploy reads `DEFAULT_TEMPERATURE` from `inference.py`,
+falling back to a recognized official checkpoint directory name. If neither
+provides a valid calibration temperature, set `--decision-temperature` explicitly.
+
+LMDeploy also exposes `/v1/systemone` for the Systemone format (`state`, a
+`questions` object, and optional image `assets`). See the
+[LMDeploy Intern-Decision documentation](https://github.com/InternLM/lmdeploy/blob/main/docs/en/llm/intern_decision.md#http)
+for protocol details and image examples.
 
 ## Training on your own data
 
@@ -364,6 +453,9 @@ changing weights. If relocating a checkpoint, update its artifact's
 `checkpoint` path only after checking all stored file hashes.
 
 ## Browser demo and HTTP API
+
+This section describes this repository's HF/XTuner demo and HTTP service.
+For LMDeploy deployment and its request formats, see [LMDeploy serving](#lmdeploy-serving).
 
 ```bash
 export MODEL_CHECKPOINT=/path/to/checkpoint
