@@ -235,33 +235,35 @@ DISABLE_TURBOMIND=1 python -m pip install \
     "git+https://github.com/InternLM/lmdeploy.git@main"
 ```
 
-`DISABLE_TURBOMIND=1` 跳过 TurboMind 编译；Intern-Decision 服务使用 PyTorch 后端。系统要求见 [LMDeploy 安装指南](https://github.com/InternLM/lmdeploy/blob/main/docs/en/get_started/installation.md#install-from-source)。
+Intern-Decision 服务使用 PyTorch 后端。系统要求见 [LMDeploy 安装指南](https://github.com/InternLM/lmdeploy/blob/main/docs/en/get_started/installation.md#install-from-source)。
 
 ## 推理
 
-### 本地推理（HF / XTuner）
+HF 和 XTuner 的请求 JSON 格式见 [docs/DATA.md](docs/DATA.md)。两者共用以下配置：`MODEL_PATH` 仅在匹配的 processor 单独存储时设置；`MEDIA_ROOT` 用于解析 CLI 本地图片路径；`CALIBRATION_PATH` 指向对应 checkpoint 的校准 JSON 文件。不提供校准文件时，温度为 1.0。不要复用其他 checkpoint 的温度，也不要将采样温度当作置信度校准。
 
-按照 [docs/DATA.md](docs/DATA.md) 准备请求 JSON，然后运行：
+### Hugging Face（HF）
+
+激活 HF 环境并运行推理：
 
 ```bash
+source .venv-hf/bin/activate
 export MODEL_CHECKPOINT=/path/to/checkpoint
 python -m src.inference --backend hf --input /path/to/request.json
 ```
 
-使用 XTuner 时，激活对应环境并显式启用其运行时：
+HF 支持通过 `configs/inference/default.json` 配置 `device`、`dtype` 和 `attn_implementation`。
+
+### XTuner
+
+激活 XTuner 环境并显式启用其运行时。该后端使用 CUDA/BF16：
 
 ```bash
+source .venv-xtuner/bin/activate
+export MODEL_CHECKPOINT=/path/to/checkpoint
 export PYTHONPATH="$PWD/runtime/xtuner:$PWD:$XTUNER_PATH"
 export XTUNER_HF_IMPL=1 XTUNER_USE_FA3=0
 python -m src.inference --backend xtuner --input /path/to/request.json
 ```
-
-XTuner 后端使用 CUDA/BF16。HF 还支持通过 `configs/inference/default.json`
-配置 `device`、`dtype` 和 `attn_implementation`。
-仅在匹配的 processor 单独存储时设置 `MODEL_PATH`。
-`MEDIA_ROOT` 用于解析 CLI 本地图片路径。`CALIBRATION_PATH` 启用对应 checkpoint
-的校准文件；不设置则使用温度 1.0。不要复用其他 checkpoint 的温度，
-也不要将采样温度当作置信度校准。
 
 ### LMDeploy 服务部署
 
@@ -282,7 +284,7 @@ lmdeploy serve api_server \
 
 保留 `--task intern-decision`：该参数启用专用决策服务。决策请求对输入评分，返回校准后的答案，不生成 token。
 
-在另一终端中向 `/v1/decisions` 发送请求，使用其支持的 OpenAI Decisions 格式，即 `input` 和 `questions` 数组：
+请求格式参考：
 
 ```bash
 curl http://127.0.0.1:23333/v1/decisions \

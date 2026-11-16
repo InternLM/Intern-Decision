@@ -252,35 +252,44 @@ DISABLE_TURBOMIND=1 python -m pip install \
     "git+https://github.com/InternLM/lmdeploy.git@main"
 ```
 
-`DISABLE_TURBOMIND=1` skips the TurboMind build; Intern-Decision serving uses
-the PyTorch backend. See the [LMDeploy installation guide](https://github.com/InternLM/lmdeploy/blob/main/docs/en/get_started/installation.md#install-from-source)
+Intern-Decision serving uses the PyTorch backend. See the
+[LMDeploy installation guide](https://github.com/InternLM/lmdeploy/blob/main/docs/en/get_started/installation.md#install-from-source)
 for system requirements.
 
 ## Inference
 
-### Local inference (HF / XTuner)
+For HF and XTuner, create a request JSON using [docs/DATA.md](docs/DATA.md).
+Their shared settings are `MODEL_PATH` (only if the matching processor is
+stored separately), `MEDIA_ROOT` (the base directory for CLI image paths),
+and `CALIBRATION_PATH` (a checkpoint-specific calibration JSON file).
+Without a calibration file, temperature is 1.0. Do not reuse a temperature
+from another checkpoint or treat a sampling temperature as calibration.
 
-Create a request JSON using [docs/DATA.md](docs/DATA.md), then:
+### Hugging Face (HF)
+
+Activate the HF environment and run inference:
 
 ```bash
+source .venv-hf/bin/activate
 export MODEL_CHECKPOINT=/path/to/checkpoint
 python -m src.inference --backend hf --input /path/to/request.json
 ```
 
-For XTuner, activate its environment and explicitly enable its runtime:
+HF supports `device`, `dtype`, and `attn_implementation` settings in
+`configs/inference/default.json`.
+
+### XTuner
+
+Activate the XTuner environment and explicitly enable its runtime.
+This backend uses CUDA/BF16:
 
 ```bash
+source .venv-xtuner/bin/activate
+export MODEL_CHECKPOINT=/path/to/checkpoint
 export PYTHONPATH="$PWD/runtime/xtuner:$PWD:$XTUNER_PATH"
 export XTUNER_HF_IMPL=1 XTUNER_USE_FA3=0
 python -m src.inference --backend xtuner --input /path/to/request.json
 ```
-
-The XTuner backend uses CUDA/BF16. HF additionally supports `device`, `dtype`
-and `attn_implementation` in `configs/inference/default.json`. Set `MODEL_PATH`
-only if the matching processor is stored separately. `MEDIA_ROOT` resolves
-local image paths for CLI use. `CALIBRATION_PATH` enables a checkpoint-specific
-calibration artifact; otherwise temperature is 1.0. Do not reuse a temperature
-from another checkpoint or treat a sampling temperature as calibration.
 
 ### LMDeploy serving
 
@@ -304,8 +313,7 @@ Keep `--task intern-decision`: it enables the dedicated decision service.
 Decision requests score the input and return calibrated answers without
 generating tokens.
 
-From another terminal, send a request to `/v1/decisions` using its supported
-OpenAI Decisions format (`input` and a `questions` array):
+Request format reference:
 
 ```bash
 curl http://127.0.0.1:23333/v1/decisions \
