@@ -183,9 +183,8 @@ python -m src.eval.score_known_distribution \
 ## 安装
 
 模型后端使用 Linux、Python 3.12 和 CUDA。请从仓库根目录执行命令。
-HF 和 XTuner 使用不同的已验证 Transformers 版本，应分别创建虚拟环境。
-checkpoint 为本地 HF 目录，须包含权重、processor、tokenizer、chat template
-和 `<decision>` token。
+HF、XTuner 和 LMDeploy 应分别创建虚拟环境；HF 和 XTuner 使用不同的已验证 Transformers 版本。
+HF 和 XTuner 使用本地 HF checkpoint 目录，须包含权重、processor、tokenizer、chat template 和 `<decision>` token。
 
 ### Hugging Face 原生推理
 
@@ -225,7 +224,22 @@ export XTUNER_PATH="$PWD/third_party/xtuner"
 HF 环境保持独立。不同算子和 BF16 舍入可能造成后端间的概率差异，
 不能假定两个后端逐位一致。
 
+### LMDeploy
+
+在独立环境中安装 [LMDeploy](https://github.com/InternLM/lmdeploy) 的 `main` 分支：
+
+```bash
+python3.12 -m venv .venv-lmdeploy
+source .venv-lmdeploy/bin/activate
+DISABLE_TURBOMIND=1 python -m pip install \
+    "git+https://github.com/InternLM/lmdeploy.git@main"
+```
+
+`DISABLE_TURBOMIND=1` 跳过 TurboMind 编译；Intern-Decision 服务使用 PyTorch 后端。系统要求见 [LMDeploy 安装指南](https://github.com/InternLM/lmdeploy/blob/main/docs/en/get_started/installation.md#install-from-source)。
+
 ## 推理
+
+### 本地推理（HF / XTuner）
 
 按照 [docs/DATA.md](docs/DATA.md) 准备请求 JSON，然后运行：
 
@@ -248,6 +262,47 @@ XTuner 后端使用 CUDA/BF16。HF 还支持通过 `configs/inference/default.js
 `MEDIA_ROOT` 用于解析 CLI 本地图片路径。`CALIBRATION_PATH` 启用对应 checkpoint
 的校准文件；不设置则使用温度 1.0。不要复用其他 checkpoint 的温度，
 也不要将采样温度当作置信度校准。
+
+### LMDeploy 服务部署
+
+在新终端中进入仓库根目录，激活 LMDeploy 环境，启动 Intern-Decision-4B 的单卡 BF16 服务：
+
+```bash
+source .venv-lmdeploy/bin/activate
+lmdeploy serve api_server \
+    internlm/Intern-Decision-4B \
+    --backend pytorch \
+    --task intern-decision \
+    --model-name Intern-Decision-4B \
+    --dtype bfloat16 \
+    --tp 1 \
+    --server-name 127.0.0.1 \
+    --server-port 23333
+```
+
+保留 `--task intern-decision`：该参数启用专用决策服务。决策请求对输入评分，返回校准后的答案，不生成 token。
+
+在另一终端中向 `/v1/decisions` 发送请求，使用其支持的 OpenAI Decisions 格式，即 `input` 和 `questions` 数组：
+
+```bash
+curl http://127.0.0.1:23333/v1/decisions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": "Intern-Decision-4B",
+        "input": "The customer was charged twice.",
+        "questions": [
+            {
+                "type": "predicate",
+                "name": "duplicate_charge",
+                "instructions": "Was the customer charged more than once?"
+            }
+        ]
+    }'
+```
+
+部署 Intern-Decision-0.8B 或 Intern-Decision-2B 时，同步替换 checkpoint ID、`--model-name` 和请求中的 `model`。LMDeploy 为官方 checkpoint 自动解析校准温度；可通过 `--decision-temperature` 指定有限正数来覆盖。上文的 `CALIBRATION_PATH` 配置用于原生 HF/XTuner 推理。
+
+LMDeploy 还提供 `/v1/systemone`，使用包含 `state`、`questions` 对象和可选图片 `assets` 的 Systemone 格式。协议详情和图片示例见 [LMDeploy Intern-Decision 文档](https://github.com/InternLM/lmdeploy/blob/main/docs/en/llm/intern_decision.md#http)。
 
 ## 使用自己的数据训练
 
@@ -345,6 +400,8 @@ Replay 对保存的候选概率应用 `softmax(log(p) / T)`，检查**零决策�
 移动 checkpoint 时，须先检查所有已记录的文件哈希，再更新校准文件中的 `checkpoint` 路径。
 
 ## 浏览器演示与 HTTP API
+
+本节介绍本仓库自带的 HF/XTuner 演示和 HTTP 服务。LMDeploy 的部署方式及请求格式见 [LMDeploy 服务部署](#lmdeploy-服务部署)。
 
 ```bash
 export MODEL_CHECKPOINT=/path/to/checkpoint
