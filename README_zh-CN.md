@@ -186,6 +186,8 @@ python -m src.eval.score_known_distribution \
 HF、XTuner 和 LMDeploy 应分别创建虚拟环境；HF 和 XTuner 使用不同的已验证 Transformers 版本。
 HF 和 XTuner 使用本地 HF checkpoint 目录，须包含权重、processor、tokenizer、chat template 和 `<decision>` token。
 
+LMDeploy 同时支持 Hugging Face 模型 ID 和包含相同文件的本地 HF checkpoint 目录。使用本地权重时，将 [LMDeploy 服务部署](#lmdeploy-服务部署)命令中的 `internlm/Intern-Decision-4B` 替换为 `/path/to/Intern-Decision-4B`，保留 `--model-name Intern-Decision-4B`，使 API 请求示例继续使用相同的模型名。
+
 ### Hugging Face 原生推理
 
 ```bash
@@ -303,6 +305,8 @@ curl http://127.0.0.1:23333/v1/decisions \
 ```
 
 部署 Intern-Decision-0.8B 或 Intern-Decision-2B 时，同步替换 checkpoint ID、`--model-name` 和请求中的 `model`。LMDeploy 为官方 checkpoint 自动解析校准温度；可通过 `--decision-temperature` 指定有限正数来覆盖。上文的 `CALIBRATION_PATH` 配置用于原生 HF/XTuner 推理。
+
+对于本地 checkpoint，LMDeploy 先读取 `inference.py` 中的 `DEFAULT_TEMPERATURE`，读取失败时按已知的官方 checkpoint 目录名匹配温度。两者均无法提供有效校准温度时，须显式指定 `--decision-temperature`。
 
 LMDeploy 还提供 `/v1/systemone`，使用包含 `state`、`questions` 对象和可选图片 `assets` 的 Systemone 格式。协议详情和图片示例见 [LMDeploy Intern-Decision 文档](https://github.com/InternLM/lmdeploy/blob/main/docs/en/llm/intern_decision.md#http)。
 

@@ -200,6 +200,12 @@ environments; the tested HF and XTuner Transformers versions differ. HF and
 XTuner use local HF checkpoint directories including weights, processor,
 tokenizer, chat template, and `<decision>` token.
 
+LMDeploy accepts either a Hugging Face model ID or a local HF checkpoint
+directory containing the same files. To use local weights, replace
+`internlm/Intern-Decision-4B` in the [LMDeploy serving command](#lmdeploy-serving)
+with `/path/to/Intern-Decision-4B`. Keep `--model-name Intern-Decision-4B`
+so the API request examples use the same model name.
+
 ### Native Hugging Face inference
 
 ```bash
@@ -336,6 +342,10 @@ For Intern-Decision-0.8B or Intern-Decision-2B, replace the checkpoint ID,
 automatically for the official checkpoints. Use `--decision-temperature` with
 a finite positive value to override it. The `CALIBRATION_PATH` setting above
 applies to native HF/XTuner inference.
+
+For local checkpoints, LMDeploy reads `DEFAULT_TEMPERATURE` from `inference.py`,
+falling back to a recognized official checkpoint directory name. If neither
+provides a valid calibration temperature, set `--decision-temperature` explicitly.
 
 LMDeploy also exposes `/v1/systemone` for the Systemone format (`state`, a
 `questions` object, and optional image `assets`). See the
